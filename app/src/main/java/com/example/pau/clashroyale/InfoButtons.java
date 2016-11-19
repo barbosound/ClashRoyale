@@ -31,7 +31,7 @@ public class InfoButtons extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        Bitmap imatge = getIntent().getParcelableExtra("image");
+        Bitmap imatge = getIntent().getParcelableExtra("imatge");
 
         foto.setImageBitmap(imatge);
 

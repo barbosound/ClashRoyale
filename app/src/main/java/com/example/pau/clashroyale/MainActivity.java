@@ -20,14 +20,10 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public boolean game = false;
-    public int random;
-    public Random r = new Random();
-    public boolean sabueso1 = false;
     public Toast correcte;
     public TextView text;
     public EditText resp;
@@ -42,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         text = (TextView)findViewById(R.id.textView);
         resp = (EditText)findViewById(R.id.resposta);
+        resp.setVisibility(View.INVISIBLE);
+
 
         ok = (Button)findViewById(R.id.button2);
         ok.setVisibility(View.INVISIBLE);
@@ -142,9 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         juga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                game = true;
                 text.setText(preguntes.get(cont));
                 ok.setVisibility(View.VISIBLE);
+                resp.setVisibility(View.VISIBLE);
             }
         });
 
@@ -157,60 +156,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 0:
                         if ((resp.getText().toString().equalsIgnoreCase("3300"))){
 
-                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_SHORT);
                             correcte.show();
                             resCorrecte = resCorrecte +1;
 
                         }else{
-                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_SHORT);
                             correcte.show();
                         }
                         break;
                     case 1:
                         if ((resp.getText().toString().equalsIgnoreCase("53"))){
 
-                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_SHORT);
                             correcte.show();
                             resCorrecte = resCorrecte +1;
 
                         }else{
-                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_SHORT);
                             correcte.show();
                         }
                         break;
                     case 2:
                         if ((resp.getText().toString().equalsIgnoreCase("hechizo"))){
 
-                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_SHORT);
                             correcte.show();
                             resCorrecte = resCorrecte +1;
 
                         }else{
-                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_SHORT);
                             correcte.show();
                         }
                         break;
                     case 3:
                         if ((resp.getText().toString().equalsIgnoreCase("duende"))){
 
-                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_SHORT);
                             correcte.show();
                             resCorrecte = resCorrecte +1;
 
                         }else{
-                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_SHORT);
                             correcte.show();
                         }
                         break;
                     case 4:
                         if ((resp.getText().toString().equalsIgnoreCase("32"))){
 
-                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"correcte",Toast.LENGTH_SHORT);
                             correcte.show();
                             resCorrecte = resCorrecte +1;
 
                         }else{
-                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_LONG);
+                            correcte = Toast.makeText(getApplicationContext(),"incorrecte",Toast.LENGTH_SHORT);
                             correcte.show();
                         }
                         break;
@@ -221,11 +220,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resp.setText("");
 
                 if (cont == 5){
-                    correcte = Toast.makeText(getApplicationContext(),"final del joc, has encertat "+ resCorrecte+"/5",Toast.LENGTH_LONG);
+                    correcte = Toast.makeText(getApplicationContext(),"final del joc, has encertat "+ resCorrecte+"/5",Toast.LENGTH_SHORT);
                     correcte.show();
                     cont = 0;
                     ok.setVisibility(View.INVISIBLE);
+                    resp.setVisibility(View.INVISIBLE);
                     text.setText("");
+                    game = false;
 
                 }
                 else{
@@ -239,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v) {
         // default method for handling onClick Events..
-
+    if (game == false){
         Bundle b = new Bundle();
         switch (v.getId()) {
 
@@ -526,14 +527,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-            Intent intencion = new Intent(MainActivity.this, InfoButtons.class);
-            intencion.putExtras(b);
+        Intent intencion = new Intent(MainActivity.this, InfoButtons.class);
+        intencion.putExtras(b);
 
-            startActivity(intencion);
+        startActivity(intencion);
 
 
 
-    }
+}
+}
+
 
 
 }
